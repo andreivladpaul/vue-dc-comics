@@ -1,34 +1,31 @@
 <template>
   <div id="app">
-    <Header />
-    <Main />
-    <Footer />
-
-    
+    <Header/>
+    <Products/>
+    <BannerFeatures/>
+    <Footer/>
   </div>
 </template>
 
 <script>
-import Header from '../src/components/Header.vue'
-import Main from '../src/components/Main.vue'
-import Footer from '../src/components/Footer.vue'
-
-import '@/style/generals.scss'
-
+import Header from './components/Header.vue'
+import Products from './components/Products.vue'
+import BannerFeatures from './components/BannerFeatures.vue'
+import Footer from './components/Footer.vue'
 
 
 export default {
   name: 'App',
   components: {
     Header,
-    Main,
-    Footer
+    Products,
+    Footer,
+    BannerFeatures
   }
 }
 </script>
 
-
 <style lang="scss">
-@import '@/style/generals.scss'
-
+  @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+  @import '@/style/general.scss';
 </style>

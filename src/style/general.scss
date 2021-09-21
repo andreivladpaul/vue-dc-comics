@@ -1,0 +1,28 @@
+@import 'brand.scss';
+@import 'mixin.scss';
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Roboto', sans-serif
+}
+
+.container {
+    width: 70%; 
+    height: 100%; 
+    margin: 0 auto; 
+    position: relative;
+    
+}
+
+.clearfix {
+    content: “ “;
+    display: table;
+    clear: both;
+  }
+
+

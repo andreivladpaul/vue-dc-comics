@@ -1,145 +1,87 @@
 <template>
-
-   <header class="layout">
-       <div class="logo">
-           <img src="@/assets/dc-logo.png" alt="">
-       </div>
-       
-
-       <ul>
-           <li v-for="(link, index) in links" :key="index" class="upper-case" :class="(link.current==true)? 'active' : null">
-               <a :href="link.url">{{link.text}}</a>
-           </li>
-       </ul>
-   </header>
-    
+  <header>
+      <div class="header-nav container">
+        <div class="logo">
+          <a href="/"><img src="@/assets/img/dc-logo.png" alt="logo.png"></a>
+        </div>
+        <div class="nav-menu">
+          <ul class="nav-items">
+            <li v-for="(link, index) in links" :key="index" class="nav-item" :class="(link == currentLink) ? 'active' : null" @click="currentNav(index)">
+              <a :href="link.url">{{link.text.toUpperCase()}}</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+  </header>
 </template>
 
-<script >
- export default {
-     name: 'Header',
-     data() {
-         return{
-             links: [
-                 {
-                     text: 'characters',
-                     url: '#',
-                     current: false
-                 },
-                 {
-                     text: 'comics',
-                     url: '#',
-                     current: true
-                 },
-                 {
-                     text: 'movies',
-                     url: '#',
-                     current: false
-                 },
-                 {
-                     text: 'tv',
-                     url: '#',
-                     current: false
-                 },
-                 {
-                     text: 'games',
-                     url: '#',
-                     current: false
-                 },
-                 {
-                     text: 'collectibles',
-                     url: '#',
-                     current: false
-                 },
-                 {
-                     text: 'videos',
-                     url: '#',
-                     current: false
-                 },
-                 {
-                     text: 'fans',
-                     url: '#',
-                     current: false
-                 },
-                 {
-                     text: 'news',
-                     url: '#',
-                     current: false
-                 },
-                 {
-                     text: 'shop',
-                     url: '#',
-                     current: false
-                 }
-             ]
-         }
-     }
- }
- 
+<script>
+import Links from '@/assets/data/Links.js'
+export default {
+  name: 'Header',
+  data(){
+    return{
+      links: Links.headerLinks,
+      currentLink: '',
+    }
+  },
+  methods: {
+    currentNav(i){
+      let tmpLink = this.links[i];
+      this.currentLink = tmpLink;
+    }
+  },
+  mounted(){
+    this.currentLink = this.links[1];
+  }
+}
 </script>
 
-<style scoped lang='scss'>
+<!-- Add "scoped" attribute to limit CSS to this component only -->
+<style scoped lang="scss">
+@import "@/style/general";
 
-@import '../style/vars';
-@import '../style/generals';
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+.header-nav{
+  height: 100px; 
+  @include center(vertical); 
+  justify-content: space-between;
+}
 
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    
-    
-    ul {
-        display: flex;
-        list-style: none;
-        justify-content: center;
-        align-items: center;
+.logo {
+  width: 70px;
+  padding: 20px 0px;
 
-        li{
-            &.active {
-                padding: 40px 0 35px 0;
-                border-bottom: 5px solid $blue;
-                
-                
-                a {
-                    color: $blue;
-                }
-            }
-            &:hover {
-                padding: 40px 0 35px 0;
-                border-bottom: 5px solid $blue;
-
-                a {
-                    color: $blue;
-                }
-            }
-        }
-   
-        li a {
-            color: $grey;
-            text-decoration: none;
-            display: flex;
-            font-weight: bold;
-            padding: 40px 0;
-                   
-        
-        }
-        li:not(:last-child) {
-            margin-right: 10px;
-        }
-
-        
+  img{
+    width: 100%;
     }
-    .logo {
-        width: 100px;
-        height: 100px;
+
+}
+.nav-items{list-style: none; display: flex; font-size: $fs-xs ; font-weight: $bold; line-height: 96px;}
+.nav-item{
+  padding: 0px 15px;
+  color: $secondary-color;
+  cursor: pointer;
+  border-bottom: 4px solid transparent;
+  a{
+    text-decoration: none;
+    color: inherit;
+
+    &:hover{
+      color: $primary-color;
     }
-    img {
-        width: 100%;
-        height: 100%;
-    }
-    
+
+  }
+
+  &:hover{
+    color: $txt-blue;
+    border-bottom: 4px solid $primary-color;
+  }
+
+  &.active{
+      color: $primary-color;
+      border-bottom: 4px solid $primary-color;
+  }
+
 }
 
 
